@@ -59,10 +59,13 @@ class Solution(object):
         for i in range(len(A)):
             for j in range(len(A)):
                 if i != j:
+                    # B 为剩下的数组
                     B = [A[k] for k in range(len(A)) if i != k != j]
                     for op in (truediv, mul, add, sub):
+                        # + 和 * 只算一次
                         if (op is add or op is mul) and j > i:
                             continue
+                        # 避免零除错误
                         if op is not truediv or A[j]:
                             B.append(op(A[i], A[j]))
                             if self.judgePoint24(B):
@@ -71,5 +74,30 @@ class Solution(object):
         return False
 
 
+#bool dfs(数组A){
+#     if(数组A 只有1个元素 且 A[0] == 24) 返回成功;
+#     for(a in 数组A){
+#         for(b in 数组A){
+#             if(a和b是同一个位置) continue;
+#             for(op = {+,-,*,/}){
+#                 if(op == + 或 op == *){
+#                     if(a 和 b，已经算过1次加法和乘法) 不再重复计算,continue;
+#                     c = a op b;
+#                     数组left={数组A中除a和b的数字} + c;
+#                     r = dfs(数组left);
+#                     if(r 成功) 返回成功;
+#                 }
+#                 if(op == - 或者 op == /){
+#                     if(op == / 并且 b为0) 除法不做，continue;
+#                     c = a op b;
+#                     数组left={数组A中除a和b的数字} + c;
+#                     r = dfs(数组left);
+#                     if(r 成功) 返回成功;
+#                 }
+#             }
+#         }
+#     }
+# }
+# 
 # @lc code=end
 
