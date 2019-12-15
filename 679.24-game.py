@@ -9,7 +9,7 @@ from typing import List
 from itertools import *
 import math
 
-
+#  暴力解法 共5种括号情况,熟悉itertools用法
 # class Solution:
 # def judgePoint24(self, nums: List[int]) -> bool:
 #     operands = self.get_operands(nums)
@@ -49,6 +49,12 @@ import math
 from operator import truediv, mul, add, sub
 
 
+# 只有 4 张牌，且只能执行 4 种操作。即使所有运算符都不进行交换，最多也只有 12 * 6 * 2 * 4 * 4 * 4 = 921612∗6∗2∗4∗4∗4=9216 种可能性，这使得我们可以尝试所有这些可能。
+# 具体来说，我们有 12 种方式先选出两个数字（有序），并执行 4 种操作之一（12 * 4）。然后，剩下 3 个数字，我们从中选择 2 个并执行 4 种操作之一（6 * 4）。
+# 最后我们剩下两个数字，并在 2 * 4 种可能之中作出最终选择。
+# 我们将对我们的数字或结果数字执行 3 次二元运算（+，-，*，/ 是运算）。因为 - 和 / 不满足交换律，我们必须仔细考虑 a / b 和 b / a。
+# 对于在我们的列表中移除 a, b 这两个数字的每一种方法，以及它们可能产生的每种结果，如 a + b、a / b等，我们将采用递归的方法解决这个较小的数字列表上的问题。
+# # 递归解法,回溯法
 class Solution(object):
     def judgePoint24(self, A):
         if not A:
@@ -74,30 +80,5 @@ class Solution(object):
         return False
 
 
-#bool dfs(数组A){
-#     if(数组A 只有1个元素 且 A[0] == 24) 返回成功;
-#     for(a in 数组A){
-#         for(b in 数组A){
-#             if(a和b是同一个位置) continue;
-#             for(op = {+,-,*,/}){
-#                 if(op == + 或 op == *){
-#                     if(a 和 b，已经算过1次加法和乘法) 不再重复计算,continue;
-#                     c = a op b;
-#                     数组left={数组A中除a和b的数字} + c;
-#                     r = dfs(数组left);
-#                     if(r 成功) 返回成功;
-#                 }
-#                 if(op == - 或者 op == /){
-#                     if(op == / 并且 b为0) 除法不做，continue;
-#                     c = a op b;
-#                     数组left={数组A中除a和b的数字} + c;
-#                     r = dfs(数组left);
-#                     if(r 成功) 返回成功;
-#                 }
-#             }
-#         }
-#     }
-# }
-# 
 # @lc code=end
 
