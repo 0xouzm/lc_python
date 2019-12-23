@@ -50,6 +50,7 @@ class Solution:
         low, high = 0, x
         while low <= high:
             partitionX = (low + high) // 2
+            # +1 保证nums2 分区正确, 理解: n个数字一共有n+1种隔开的方法
             partitionY = (x + y + 1) // 2 - partitionX
 
             maxLeftX = float("-inf") if partitionX == 0 else nums1[partitionX - 1]
