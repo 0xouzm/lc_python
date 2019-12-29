@@ -2,28 +2,23 @@ from typing import List
 
 
 class Solution:
-    def canPartition(self, nums: List[int]) -> bool:
-        s = sum(nums)
-        n = len(nums)
-        memo = {0: True}
-        pick = []
-        if s & 1:
-            return False
-        # nums.sort(reverse=True)
+    def letterCombinations(self, digits: str) -> List[str]:
+        def dfs(digits, d, l, cur, ans):
+            if l == len(digits):
+                ans.append("".join(cur))
+                return
+            for c in d[ord(digits[l]) - ord("0")]:
+                cur[l] = c
+                dfs(digits, d, l + 1, cur, ans)
 
-        # def dfs(i, x):
-        #     if x not in memo:
-        #         memo[x] = False
-        #         if x > 0:
-        #             for j in range(i, n):
-        #                 if dfs(j + 1, x - nums[j]):
-        #                     memo[x] = True
-        #                     break
-        #     return memo[x]
-        # status = dfs(0, s >> 1)
-        # print(memo)
-        # return status
+        d = [" ", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+        cur = [" " for _ in range(len(digits))]
+        ans = []
+        dfs(digits, d, 0, cur, ans)
+        return ans
 
+
+digits = "23"
 s = Solution()
-print(s.canPartition([1, 5, 11, 5]))
 
+print(s.letterCombinations(digits))
