@@ -55,7 +55,7 @@
 # @lc code=start
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        def dfs(candidates, target, s, cur, ans):
+        def dfs(target, s, cur):
             if target == 0:
                 ans.append(cur[:])
                 return
@@ -63,12 +63,12 @@ class Solution:
                 if candidates[i] > target:
                     break
                 cur.append(candidates[i])
-                dfs(candidates, target - candidates[i], i, cur, ans)
+                dfs(target - candidates[i], i, cur)
                 cur.pop()
 
         ans = []
         candidates.sort()
-        dfs(candidates, target, 0, [], ans)
+        dfs(target, 0, [])
         return ans
 
 
