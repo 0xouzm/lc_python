@@ -55,18 +55,21 @@
 # @lc code=start
 class Solution:
     def combinationSum(self, candidates: List[int], target: int) -> List[List[int]]:
-        ans = []
-        cur = []
+        def dfs(candidates, target, s, cur, ans):
+            if target == 0:
+                ans.append(cur[:])
+                return
+            for i in range(s, len(candidates)):
+                if candidates[i] > target:
+                    break
+                cur.append(candidates[i])
+                dfs(candidates, target - candidates[i], i, cur, ans)
+                cur.pop()
 
-        def dfs(candidates, target, l, cur, ans):
-            if l == len(candidates):
-                if sum(cur) == 7:
-                    ans.append(cur)
-                    return
-            for i in candidates:
-                if sum(cur) + i <= target:
-                    dfs(candidates, target, l, cur, ans)
-                dfs(candidates, target, l + 1, cur, ans)
+        ans = []
+        candidates.sort()
+        dfs(candidates, target, 0, [], ans)
+        return ans
 
 
 # @lc code=end

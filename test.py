@@ -29,12 +29,11 @@
 # print(s.combinationSum([2, 3, 6, 7], 7))
 
 
-
 def permutations(nums, d, n, used, cur, ans):
     if d == n:
         ans.append(cur[:])
         return
-    for i in range(0, len(nums)):
+    for i in range(len(nums)):
         if used[i]:
             continue
         used[i] = True
@@ -54,12 +53,11 @@ def combination(nums, d, n, s, cur, ans):
         cur.pop()
 
 
-ans = []
-permutations([1, 2, 3], 0, 3, [False] * 3, [], ans)
-print(ans)
+# ans = []
+# permutations([1,2,3],0,3,[False]*3,[],ans)
+# print(ans)
 
 c = []
-
 combination([1, 2, 3], 0, 3, 0, [], c)
 print(c)
 
