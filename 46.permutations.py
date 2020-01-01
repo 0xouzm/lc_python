@@ -14,15 +14,13 @@ class Solution:
                 ans.append(cur[:])
                 return
             for i in range(len(nums)):
-                if used[i]:
+                if used & 1 << i:
                     continue
-                used[i] = True
                 cur.append(nums[i])
-                dfs(d + 1, n, used, cur)
-                used[i] = False
+                dfs(d + 1, n, used | 1 << i, cur)
                 cur.pop()
 
-        dfs(0, len(nums), [False] * len(nums), [])
+        dfs(0, len(nums), 0, [])
         return ans
 
 
