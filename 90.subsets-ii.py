@@ -7,22 +7,22 @@
 # @lc code=start
 class Solution:
     def subsetsWithDup(self, nums: List[int]) -> List[List[int]]:
-        ans = []
-        nums.sort()
-
-        def dfs(n, s, cur):
-            if n == len(cur):
-                ans.append(cur.copy())
+        def dfs(cur, s, d):
+            if len(cur) == d:
+                ans.append(cur[:])
                 return
             for i in range(s, len(nums)):
-                if i > s and nums[i] == nums[i - 1]:
+                if i != s and nums[i] == nums[i - 1]:
                     continue
                 cur.append(nums[i])
-                dfs(n, i + 1, cur)
+                dfs(cur, i + 1, d)
                 cur.pop()
 
+        ans = []
+        nums.sort()
         for i in range(len(nums) + 1):
-            dfs(i, 0, [])
+            dfs([], 0, i)
+
         return ans
 
 
