@@ -18,6 +18,7 @@ class Solution:
                 if used & 1 << i:
                     continue
                 cur.append(nums[i])
+                # dfs(used + 2 ** i, cur)
                 dfs(used | 1 << i, cur)
                 cur.pop()
 
