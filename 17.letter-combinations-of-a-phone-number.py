@@ -38,6 +38,7 @@
 # @lc code=start
 class Solution:
     def letterCombinations(self, digits: str) -> List[str]:
+        # dfs
         if not digits:
             return []
         d = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
@@ -45,17 +46,28 @@ class Solution:
         ans = []
         n = len(digits)
 
-        def dfs(s, cur):
+        def dfs(l, cur):
             if len(cur) == n:
                 ans.append(cur[:])
                 return
-            for c in d[int(digits[s])]:
+            for c in d[int(digits[l])]:
                 cur += c
-                dfs(s + 1, cur)
+                dfs(l + 1, cur)
                 cur = cur[:-1]
-
-        dfs(0, "")
+        dfs(0,"")
         return ans
+
+        # bfs
+        # if not digits: return []
+        # ans = [""]
+        # d = ["", "", "abc", "def", "ghi", "jkl", "mno", "pqrs", "tuv", "wxyz"]
+        # for digit in digits:
+        #     tmp = []
+        #     for s in ans:
+        #         for c in d[int(digit)]:
+        #             tmp.append(s+c)
+        #     ans = tmp
+        # return ans
 
 
 # @lc code=end
