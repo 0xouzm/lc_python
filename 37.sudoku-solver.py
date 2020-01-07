@@ -49,51 +49,51 @@ class Solution:
         """
         Do not return anything, modify board in-place instead.
         """
-
         rows = [[0] * 10 for _ in range(9)]
         cols = [[0] * 10 for _ in range(9)]
         boxes = [[0] * 10 for _ in range(9)]
 
-        for r in range(9):
-            for c in range(9):
-                n = board[r][c]
-                bx = r // 3
-                by = c // 3
-
+        for y in range(9):
+            for x in range(9):
+                n = board[y][x]
+                by = y // 3
+                bx = x // 3
                 if n != ".":
                     n = int(n)
-                    rows[r][n] = 1
-                    cols[c][n] = 1
-                    boxes[3 * bx + by][n] = 1
+                    rows[y][n] = 1
+                    cols[x][n] = 1
+                    boxes[3 * by + bx][n] = 1
 
         def dfs(x, y):
-            if x == 9:
+            if y == 9:
                 return True
 
-            ny = (y + 1) % 9
-            nx = x + 1 if ny == 0 else x
+            nx = (x + 1) % 9
+            ny = y + 1 if nx == 0 else y
 
-            if board[x][y] != ".":
+            if board[y][x] != ".":
                 return dfs(nx, ny)
 
             for i in range(1, 10):
                 bx = x // 3
                 by = y // 3
-                boxkey = bx * 3 + by
-                if not rows[x][i] and not cols[y][i] and not boxes[boxkey][i]:
-                    rows[x][i] = 1
-                    cols[y][i] = 1
+                boxkey = 3 * by + bx
+                if not rows[y][i] and not cols[x][i] and not boxes[boxkey][i]:
+                    rows[y][i] = 1
+                    cols[x][i] = 1
                     boxes[boxkey][i] = 1
-                    board[x][y] = str(i)
+                    board[y][x] = str(i)
+
                     if dfs(nx, ny):
                         return True
-                    rows[x][i] = 0
-                    cols[y][i] = 0
-                    boxes[boxkey][i]= 0
-                    board[x][y] = "."
+
+                    rows[y][i] = 0
+                    cols[x][i] = 0
+                    boxes[boxkey][i] = 0
+                    board[y][x] = "."
             return False
 
         dfs(0, 0)
 
-# @lc code=end
 
+# @lc code=end
