@@ -21,6 +21,7 @@ class Solution:
 
         dfs([], [], [])
 
-        return [['.' * i + 'Q' + '.' * (n - i - 1) for i in s] for s in ans]
+        return [["." * i + "Q" + "." * (n - i - 1) for i in s] for s in ans]
+
 
 # @lc code=end
