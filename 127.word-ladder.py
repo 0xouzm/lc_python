@@ -5,39 +5,40 @@
 #
 
 # @lc code=start
-from collections import deque
+import string
+
 
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
         wordDict = set(wordList)
-        if endWord not in wordList:
+        if endWord not in wordDict:
             return 0
-
+        s1 = {beginWord}
+        s2 = {endWord}
         l = len(beginWord)
-        steps = 0
-        q = {beginWord}
+        step = 0
 
-        while q:
-            steps += 1
-            tmp_q = set()
-            for w in q:
-                chs = list(w)
+        while s1 and s2:
+            step += 1
+            if len(s1) > len(s2):
+                s1, s2 = s2, s1
+            s = set()
+            for w in s1:
                 for i in range(l):
-                    ch = chs[i]
-                    for c in 'abcdefghikjlmnopqrstuvwxyz':
+                    ch = w[i]
+                    for c in string.ascii_lowercase:
                         if c == ch:
                             continue
-                        chs[i] = c
-                        t = "".join(chs)
-                        if t not in wordDict:
+                        tmp = w[:i] + c + w[i + 1 :]
+                        if tmp in s2:
+                            return step + 1
+                        if tmp not in wordDict:
                             continue
-                        if t == endWord:
-                            return steps + 1
-                        wordDict.remove(t)
-                        tmp_q.add(t)
-                    chs[i] = ch
-            q = tmp_q
+                        wordDict.remove(tmp)
+                        s.add(tmp)
+            s1 = s
         return 0
+
 
 # @lc code=end
 
