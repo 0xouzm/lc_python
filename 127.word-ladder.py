@@ -15,16 +15,16 @@ class Solution:
 
         l = len(beginWord)
         steps = 0
-        q = deque([beginWord])
+        q = {beginWord}
 
         while q:
             steps += 1
-            for _ in range(len(q)):
-                w = q.popleft()
+            tmp_q = set()
+            for w in q:
                 chs = list(w)
                 for i in range(l):
                     ch = chs[i]
-                    for c in [chr(s) for s in range(97, 123)]:
+                    for c in 'abcdefghikjlmnopqrstuvwxyz':
                         if c == ch:
                             continue
                         chs[i] = c
@@ -34,8 +34,9 @@ class Solution:
                         if t == endWord:
                             return steps + 1
                         wordDict.remove(t)
-                        q.append(t)
+                        tmp_q.add(t)
                     chs[i] = ch
+            q = tmp_q
         return 0
 
 # @lc code=end
