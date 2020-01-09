@@ -74,6 +74,7 @@ class Solution:
     def findLadders(self, beginWord: str, endWord: str, wordList: List[str]) -> List[List[str]]:
         ans = defaultdict(list)
         wordDict = set(wordList)
+        wordDict.add(beginWord)
         if endWord not in wordDict:
             return []
         s = {beginWord}
@@ -81,25 +82,21 @@ class Solution:
         found = False
 
         while s and not found:
+            for w in s:
+                wordDict.remove(w)
             tmp_s = set()
             for w in s:
                 for i in range(l):
-                    ch = w[i]
                     for c in string.ascii_lowercase:
-                        if c == ch:
-                            continue
                         tmp = w[:i] + c + w[i+1:]
                         if tmp == endWord:
                             found = True
-                            if w not in ans[endWord]:
-                                ans[endWord].append(w)
+                            ans[endWord].append(w)
                             continue
                         if tmp not in wordDict:
                             continue
                         tmp_s.add(tmp)
-                        if w not in ans[tmp]:
-                            ans[tmp].append(w)
-                        del tmp
+                        ans[tmp].append(w)
             s = tmp_s
 
         def dfs(k,cur):
