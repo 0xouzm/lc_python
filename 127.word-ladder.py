@@ -10,6 +10,7 @@ import string
 
 class Solution:
     def ladderLength(self, beginWord: str, endWord: str, wordList: List[str]) -> int:
+        ans = []
         wordDict = set(wordList)
         if endWord not in wordDict:
             return 0
