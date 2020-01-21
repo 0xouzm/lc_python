@@ -13,13 +13,16 @@
 
 class Solution:
     def reverseList(self, head: ListNode) -> ListNode:
-        tmp = None
-        while head:
-            next = head.next
-            head.next = tmp
-            tmp = head
-            head = next
-        return tmp
+        pre = None
+        cur = head
+        while cur:
+            next = cur.next
+            cur.next = pre
+            pre = cur
+            cur = next
+        return pre
+
+  
         
 # @lc code=end
 
