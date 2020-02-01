@@ -17,23 +17,18 @@ class Solution:
         root = n = ListNode(0)
         carry = 0
         while l1 or l2 or carry:
-            v1 = v2 = 0
+            a = b = 0
             if l1:
-                v1 = l1.val
+                a = l1.val
                 l1 = l1.next
             if l2:
-                v2 = l2.val
+                b = l2.val
                 l2 = l2.next
 
-            v = v1 + v2 + carry
-            val = v % 10
-            n.next = ListNode(val)
-            if v >= 10:
-                carry = 1
-            else:
-                carry = 0
-            # carry,val = divmod(v,10)
-            # n.next = ListNode(val)
+            v = a + b + carry
+            new_var = v % 10
+            carry = v // 10
+            n.next = ListNode(new_var)
             n = n.next
         return root.next
 
