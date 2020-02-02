@@ -13,23 +13,17 @@
 
 class Solution:
     def swapPairs(self, head: ListNode) -> ListNode:
-        dummy = ListNode(None)
-        dummy.next = head
-        pre = dummy
-        while pre.next and pre.next.next:
-            l1 = pre.next
-            l2 = pre.next.next
-            nxt = l2.next
-            l1.next = nxt
-            l2.next = l1
-            pre.next = l2
-            pre = l1
+        dummy = cur = ListNode(0)
+        cur.next = head
+        while cur.next and cur.next.next:
+            n1 = cur.next
+            n2 = cur.next.next
+            next = n2.next
+            cur.next = n2
+            n2.next = n1
+            n1.next = next
+            cur = cur.next.next
         return dummy.next
-
-            
-
-
-        
 
         
 # @lc code=end
