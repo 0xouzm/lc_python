@@ -13,6 +13,8 @@
 
 class Solution:
     def deleteDuplicates(self, head: ListNode) -> ListNode:
+        if not head:
+            return None
         dummy = pre = ListNode(None)
         dummy.next = head
         while head:
