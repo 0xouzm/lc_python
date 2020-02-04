@@ -16,11 +16,11 @@ class Solution:
     def preorderTraversal(self, root: TreeNode) -> List[int]:
         res, stack = [], [root]
         while stack:
-            tmp = stack.pop()
-            if tmp:
-                res.append(tmp.val)
-                stack.append(tmp.right)
-                stack.append(tmp.left)
+            n = stack.pop()
+            if n:
+                res.append(n.val)
+                stack.append(n.right)
+                stack.append(n.left)
         return res
         
 # @lc code=end
