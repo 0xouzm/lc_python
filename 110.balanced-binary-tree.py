@@ -14,22 +14,21 @@
 
 
 class Solution:
-    def isBalanced(self, root: TreeNode) -> bool:
-        def height(node):
-            return 1 + max(map(height, (node.left, node.right))) if node else 0
+    def isBalanced(self, root):
+        self.balanced = True
 
-        if root is None:
-            return True
-        lh = height(root.left)
-        rh = height(root.right)
+        def height(root):
+            if not root or not self.balanced:
+                return 0
+            l = height(root.left)
+            r = height(root.right)
+            if abs(l - r) > 1:
+                self.balanced = False
+                return 0
+            return max(l, r) + 1
 
-        if (
-            abs(lh - rh) <= 1
-            and self.isBalanced(root.left)
-            and self.isBalanced(root.right)
-        ):
-            return True
-        return False
+        height(root)
+        return self.balanced
 
 
 # @lc code=end
