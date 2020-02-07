@@ -19,8 +19,9 @@ class Solution:
             return False
         if not root.left and not root.right and root.val == sum:
             return True
-        left = sum - root.val
-        return self.hasPathSum(root.left, left) or self.hasPathSum(root.right, left)
+        return self.hasPathSum(root.left, sum - root.val) or self.hasPathSum(
+            root.right, sum - root.val
+        )
 
 
 # @lc code=end

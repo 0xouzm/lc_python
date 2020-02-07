@@ -16,20 +16,27 @@
 class Solution:
     def pathSum(self, root: TreeNode, sum: int) -> int:
         self.count = 0
+        ans = []
+        cur = []
 
-        def dfs(root, newsum):
+        def find(root, newsum):
             if not root:
                 return
             if root.val == newsum:
+                cur.append(root.val)
+                ans.append(cur[:])
+                cur.pop()
                 self.count += 1
                 return
-            dfs(root.left, newsum - root.val)
-            dfs(root.right, newsum - root.val)
-            dfs(root.left, sum)
-            dfs(root.right, sum)
+            cur.append(root.val)
+            find(root.left, newsum - root.val)
+            find(root.right, newsum - root.val)
+            find(root.left, sum)
+            find(root.right, sum)
+            cur.pop()
 
-        dfs(root, sum)
-
+        find(root, sum)
+        print(ans)
         return self.count
 
 
