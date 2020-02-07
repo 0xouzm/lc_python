@@ -13,28 +13,34 @@
 #         self.right = None
 
 
-class Solution:
-    def pathSum(self, root: TreeNode, sum: int) -> int:
-        self.count = 0
+class Solution(object):
+    def pathSum(self, root, target):
+        # define global result and path
+        self.result = 0
+        cache = {0: 1}
 
-        def dfs(root, target):
-            if not root:
-                return
-            test(root, target)
-            dfs(root.left, target)
-            dfs(root.right, target)
+        # recursive to get result
+        self.dfs(root, target, 0, cache)
 
-        def test(root, target):
-            if not root:
-                return
-            if target == root.val:
-                self.count += 1
-            target -= root.val
-            test(root.left, target)
-            test(root.right, target)
+        # return result
+        return self.result
 
-        dfs(root, sum)
-        return self.count
+    def dfs(self, root, target, currPathSum, cache):
+        # exit condition
+        if root is None:
+            return
+        # calculate currPathSum and required oldPathSum
+        currPathSum += root.val
+        oldPathSum = currPathSum - target
+        # update result and cache
+        self.result += cache.get(oldPathSum, 0)
+        cache[currPathSum] = cache.get(currPathSum, 0) + 1
+
+        # dfs breakdown
+        self.dfs(root.left, target, currPathSum, cache)
+        self.dfs(root.right, target, currPathSum, cache)
+        # when move to a different branch, the currPathSum is no longer available, hence remove one.
+        cache[currPathSum] -= 1
 
 
 # @lc code=end
