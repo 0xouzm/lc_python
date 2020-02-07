@@ -42,15 +42,12 @@ class Solution:
         if not nums:
             return 0
         n = len(nums)
-        dp = [1] + [0] * (n - 1)
-        for i in range(1, n):
-            tmp = [dp[j] for j in range(i) if nums[j] < nums[i]]
-            if tmp:
-                dp[i] = max(tmp) + 1
-            else:
-                dp[i] = 1
-
-        return max(dp)
+        res = [1] * n
+        for i in range(n):
+            for j in range(i):
+                if nums[i] > nums[j]:
+                    res[i] = max(res[i], 1 + res[j])
+        return max(res)
 
 
 # @lc code=end

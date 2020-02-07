@@ -7,28 +7,14 @@
 # @lc code=start
 class Solution:
     def coinChange(self, coins: List[int], amount: int) -> int:
-        memo = dict()
-        def dp(n):
-            # # base case
-            if n in memo:
-                return memo[n]
-            if n == 0:
-                return 0
-            if n < 0:
-                return -1
-            # 求最小值，所以初始化为正无穷
-            res = float("INF")
-            for coin in coins:
-                subproblem = dp(n - coin)
-                # 子问题无解，跳过
-                if subproblem == -1:
+        dp = [amount + 1] * (amount + 1)
+        dp[0] = 0
+        for i in range(len(dp)):
+            for c in coins:
+                if i - c < 0:
                     continue
-                res = min(res, 1 + subproblem)
-
-            memo[n] =  res if res != float("INF") else -1
-            return memo[n]
-
-        return dp(amount)
+                dp[i] = min(dp[i], 1 + dp[i - c])
+        return -1 if dp[amount] == amount + 1 else dp[amount]
 
 
 # @lc code=end
