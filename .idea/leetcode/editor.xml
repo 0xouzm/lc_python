@@ -3,6 +3,22 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[605]Can Place Flowers.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[605]Can Place Flowers.cpp" />
+              <option name="questionId" value="605" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
+        <entry key="/var/folders/_z/dnyjcqgj67n36tpg4vrp_sxw0000gn/T/leetcode/editor/en/[763]Partition Labels.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="/var/folders/_z/dnyjcqgj67n36tpg4vrp_sxw0000gn/T/leetcode/editor/en/[763]Partition Labels.cpp" />
+              <option name="questionId" value="768" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="/var/folders/_z/dnyjcqgj67n36tpg4vrp_sxw0000gn/T/leetcode/editor/en/[79]Word Search.py">
           <value>
             <LeetcodeEditor>
