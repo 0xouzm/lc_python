@@ -3,6 +3,14 @@
   <component name="LeetcodeEditor">
     <option name="projectConfig">
       <map>
+        <entry key="$PROJECT_DIR$/leetcode/editor/en/[452]Minimum Number of Arrows to Burst Balloons.cpp">
+          <value>
+            <LeetcodeEditor>
+              <option name="path" value="$PROJECT_DIR$/leetcode/editor/en/[452]Minimum Number of Arrows to Burst Balloons.cpp" />
+              <option name="questionId" value="452" />
+            </LeetcodeEditor>
+          </value>
+        </entry>
         <entry key="$PROJECT_DIR$/leetcode/editor/en/[605]Can Place Flowers.cpp">
           <value>
             <LeetcodeEditor>
