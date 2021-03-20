@@ -16,7 +16,6 @@ public:
                 num[i + 1] = num[i] + 1;
             }
         }
-
         for (int i = len - 1; i > 0; i--) {
             if (ratings[i - 1] > ratings[i] & num[i - 1] <= num[i]) {
                 num[i - 1] = num[i] + 1;
